@@ -2,7 +2,7 @@ import datetime
 import re
 
 
-def log(file, message, show):
+def log(file, message, show=False):
     try:
         f = open(file, "a+")
         error = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + message + "\n"
@@ -24,8 +24,12 @@ def validate_time_format(current_time):
 
 
 def check_config_format(line):
-    print("Lol")
+    line = line.split(" ")
+    if len(line) != 3:
+        return False
+
+    return True
 
 
-def transform_config_line(line):
+def transform_config_line(current_time, line):
     print("Lol")

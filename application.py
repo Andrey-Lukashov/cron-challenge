@@ -21,8 +21,10 @@ if __name__ == "__main__":
         sys.exit()
     else:
         for line in sys.stdin:
-            print(line)
-
+            if functions.check_config_format(line):
+                print(line)
+            else:
+                functions.log("unprocessed.log", "Wrong line format supplied: " + line, True)
 
     # check if stdin line has got correct format
         # if bad format then move to other logs for reprocessing
