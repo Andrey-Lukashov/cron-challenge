@@ -14,7 +14,7 @@ def log(file, message, show=False):
         error = datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + message
         f.write(error + "\n")
         if show:
-            print(error)
+            print(error.rstrip("\n"))
     except IOError:
         print("Can't write to file")
     finally:
