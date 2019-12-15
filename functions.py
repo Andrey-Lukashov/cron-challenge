@@ -82,7 +82,9 @@ def transform_config_time(current_time, hours, minutes, command):
     if command_time < current_time:
         if hourly:
             command_time = command_time + timedelta(hours=1)
-            if command_time > current_time:
+            if command_time.date() == current_time.date():
+                running_day = "today"
+            else:
                 running_day = "tomorrow"
         else:
             running_day = "tomorrow"
