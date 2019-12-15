@@ -9,7 +9,7 @@ if __name__ == "__main__":
     if len(sys.argv) == 2:
         current_time = str(sys.argv[1])
     else:
-        functions.log("main.log", "Too many arguments supplied", True)
+        functions.log("main.log", "Incorrect arguments are supplied", True)
         sys.exit()
 
     if not functions.validate_time_format(current_time):
@@ -22,7 +22,10 @@ if __name__ == "__main__":
     else:
         for line in sys.stdin:
             if functions.check_config_format(line):
-                print(line)
+                line = line.split(" ")
+                minutes = line[0]
+                hours = line[1]
+                command = line[2]
             else:
                 functions.log("unprocessed.log", "Wrong line format supplied: " + line, True)
 
