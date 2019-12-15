@@ -5,17 +5,19 @@ import sys
 import functions
 
 if __name__ == "__main__":
-
+    # Check if correct arguments are provided
     if len(sys.argv) == 2:
         current_time = str(sys.argv[1])
     else:
         functions.log("main.log", "Incorrect arguments are supplied", True)
         sys.exit()
 
+    # Validate current time provided
     if not functions.validate_time_format(current_time):
         functions.log("main.log", "Current time format supplied is incorrect. Time supplied: " + current_time, True)
         sys.exit()
 
+    # Check if config is provided and then validate line by line
     if os.isatty(0):
         print("No config has been provided")
         sys.exit()
