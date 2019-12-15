@@ -16,8 +16,16 @@ def log(file, message, show):
 
 
 def validate_time_format(current_time):
-    pattern = re.compile("\b([0-9]|1[0-9]|2[0-4])\b:([0-5][0-9])")
+    pattern = re.compile("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")
     if pattern.match(current_time):
         return True
     else:
         return False
+
+
+def check_config_format(line):
+    print("Lol")
+
+
+def transform_config_line(line):
+    print("Lol")
