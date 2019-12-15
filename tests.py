@@ -1,7 +1,6 @@
 import unittest
 import functions
 import os
-import signal
 from datetime import datetime
 
 
