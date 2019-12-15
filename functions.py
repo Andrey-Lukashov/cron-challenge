@@ -1,5 +1,5 @@
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def log(file, message, show=False):
@@ -64,8 +64,10 @@ def transform_config_time(current_time, hours, minutes, command):
     """
     current_hour, current_minutes = current_time.split(":")
 
+    hourly = False
     if hours == "*":
         hours = current_hour
+        hourly = True
 
     if minutes == "*":
         if current_hour == hours:
@@ -78,6 +80,11 @@ def transform_config_time(current_time, hours, minutes, command):
 
     running_day = "today"
     if command_time < current_time:
-        running_day = "tomorrow"
+        if hourly:
+            command_time = command_time + timedelta(hours=1)
+            if command_time > current_time:
+                running_day = "tomorrow"
+        else:
+            running_day = "tomorrow"
 
-    return hours + ":" + minutes + " " + running_day + " - " + command
+    return str(command_time.hour) + ":" + minutes + " " + running_day + " - " + command
