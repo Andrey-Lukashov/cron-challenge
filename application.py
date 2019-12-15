@@ -1,3 +1,5 @@
+#!venv/bin/python3.7
+
 import sys
 import argparse
 
@@ -11,4 +13,3 @@ if __name__ == "__main__":
 
     for line in sys.stdin:
         print(line)
-
