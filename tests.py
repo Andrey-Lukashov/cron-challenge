@@ -1,6 +1,8 @@
 import unittest
 import functions
 import os
+import signal
+from datetime import datetime
 
 
 class FunctionsTest(unittest.TestCase):
@@ -75,19 +77,34 @@ class FunctionsTest(unittest.TestCase):
 
 class ApplicationTest(unittest.TestCase):
     def test_missing_time(self):
-        self.assertEqual(True, False)
+        cmd = os.popen('./application.py')
+        output = cmd.read()
+        self.assertEqual(output, datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + "Incorrect arguments are supplied\n")
+        cmd.close()
 
     def test_invalid_time(self):
-        self.assertEqual(True, False)
+        cmd = os.popen('./application.py 24:26')
+        output = cmd.read()
+        self.assertEqual(output, datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + "Current time format supplied is incorrect. Time supplied: 24:26\n")
+        cmd.close()
 
     def test_missing_config(self):
-        self.assertEqual(True, False)
+        cmd = os.popen('./application.py 21:26')
+        output = cmd.read()
+        self.assertEqual(output, "No config has been provided\n")
+        cmd.close()
 
     def test_invalid_config(self):
-        self.assertEqual(True, False)
+        cmd = os.popen('./application.py 16:30 < doesntexist')
+        output = cmd.read()
+        self.assertEqual(output, "")
+        cmd.close()
 
     def test_correct_call(self):
-        self.assertEqual(True, False)
+        cmd = os.popen('./application.py 16:30 < test')
+        output = cmd.read()
+        self.assertEqual(output, "16:30 today - /bin/run_me_every_minute\n")
+        cmd.close()
 
 
 if __name__ == '__main__':

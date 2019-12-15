@@ -17,7 +17,7 @@ if __name__ == "__main__":
         sys.exit()
 
     if os.isatty(0):
-        print("No config has been provided!")
+        print("No config has been provided")
         sys.exit()
     else:
         for line in sys.stdin:

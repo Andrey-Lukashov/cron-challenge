@@ -6,7 +6,7 @@ def log(file, message, show=False):
     try:
         f = open(file, "a+")
         error = datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + message
-        f.write(error)
+        f.write(error + "\n")
         if show:
             print(error)
     except IOError:
