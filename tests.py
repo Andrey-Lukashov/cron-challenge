@@ -60,7 +60,7 @@ class FunctionsTest(unittest.TestCase):
         hours = "20"
         minutes = "*"
         command = "/bin/run_me_daily"
-        self.assertEqual(functions.transform_config_time(current_time, hours, minutes, command), "20:00 tomorrow - /bin/run_me_daily")
+        self.assertEqual(functions.transform_config_time(current_time, hours, minutes, command), "20:15 today - /bin/run_me_daily")
 
         hours = "19"
         minutes = "*"
