@@ -26,19 +26,11 @@ if __name__ == "__main__":
                 minutes = line[0]
                 hours = line[1]
                 command = line[2]
+
+                line = functions.transform_config_time(current_time, hours, minutes, command)
+
+                print(line.rstrip("\n"))
             else:
                 functions.log("unprocessed.log", "Wrong line format supplied: " + line, True)
 
-    # check if stdin line has got correct format
-        # if bad format then move to other logs for reprocessing
-        # else - transform the output to correct one
-    # show it to the stdout
-
-    # sort the output by time (optional)
-
-
-    # transform cron kind of look into the normal look
-    # sort the array of things before the output
-    # show beautiful output to stdout
-
-
+    sys.exit()

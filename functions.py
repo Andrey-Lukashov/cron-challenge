@@ -1,11 +1,11 @@
-import datetime
 import re
+from datetime import datetime
 
 
 def log(file, message, show=False):
     try:
         f = open(file, "a+")
-        error = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + message
+        error = datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + message
         f.write(error)
         if show:
             print(error)
@@ -43,8 +43,8 @@ def check_config_format(line):
     return True
 
 
-def transform_config_time(current_time, hours, minutes):
-    current_hour, current_minutes = current_time.spli(":")
+def transform_config_time(current_time, hours, minutes, command):
+    current_hour, current_minutes = current_time.split(":")
 
     if hours == "*":
         hours = current_hour
@@ -52,3 +52,11 @@ def transform_config_time(current_time, hours, minutes):
     if minutes == "*":
         minutes = current_minutes
 
+    command_time = datetime.strptime(hours + ":" + minutes, '%H:%M')
+    current_time = datetime.strptime(current_time, '%H:%M')
+
+    running_day = "today"
+    if command_time < current_time:
+        running_day = "tomorrow"
+
+    return hours + ":" + minutes + " " + running_day + " - " + command
