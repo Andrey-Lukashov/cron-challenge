@@ -50,7 +50,7 @@ def transform_config_time(current_time, hours, minutes, command):
         hours = current_hour
 
     if minutes == "*":
-        minutes = current_minutes
+        minutes = "00"
 
     command_time = datetime.strptime(hours + ":" + minutes, '%H:%M')
     current_time = datetime.strptime(current_time, '%H:%M')
