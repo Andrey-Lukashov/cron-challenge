@@ -1,5 +1,6 @@
 # Cron Challenge
 ## Running the app
+- This application was developed and tested to work on Ubuntu 19.10
 - Make sure Python 3.7 is installed and working on your machine
 - Make sure the shebang in application.py and tests.py points to python binary on your machine (by default shebang set to /usr/bin/python)
 - Open the terminal

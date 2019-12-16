@@ -2,8 +2,9 @@
 
 import unittest
 import functions
-import os
 from datetime import datetime
+import subprocess
+import os
 
 
 class FunctionsTest(unittest.TestCase):
@@ -78,34 +79,20 @@ class FunctionsTest(unittest.TestCase):
 
 class ApplicationTest(unittest.TestCase):
     def test_missing_time(self):
-        cmd = os.popen('./application.py')
-        output = cmd.read()
-        self.assertEqual(output, datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + "Incorrect arguments are supplied\n")
-        cmd.close()
+        result = subprocess.run(['./application.py'], capture_output=True)
+        self.assertEqual(result.stdout.decode("utf-8"), datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + "Incorrect arguments are supplied\n")
 
     def test_invalid_time(self):
-        cmd = os.popen('./application.py 24:26')
-        output = cmd.read()
-        self.assertEqual(output, datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + "Current time format supplied is incorrect. Time supplied: 24:26\n")
-        cmd.close()
+        result = subprocess.run(['./application.py', '24:26'], capture_output=True)
+        self.assertEqual(result.stdout.decode("utf-8"), datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + "Current time format supplied is incorrect. Time supplied: 24:26\n")
 
     def test_missing_config(self):
-        cmd = os.popen('./application.py 21:26')
-        output = cmd.read()
-        self.assertEqual(output, "No config has been provided\n")
-        cmd.close()
-
-    def test_invalid_config(self):
-        cmd = os.popen('./application.py 16:30 < doesntexist')
-        output = cmd.read()
-        self.assertEqual(output, "")
-        cmd.close()
+        result = subprocess.run(['./application.py', '21:26'], capture_output=True)
+        self.assertEqual(result.stdout.decode("utf-8"), "No config has been provided\n")
 
     def test_correct_call(self):
-        cmd = os.popen('./application.py 16:30 < test')
-        output = cmd.read()
-        self.assertEqual(output, "16:30 today - /bin/run_me_every_minute\n")
-        cmd.close()
+        result = subprocess.run('./application.py 16:30 < test', shell=True, capture_output=True)
+        self.assertEqual(result.stdout.decode("utf-8"), "16:30 today - /bin/run_me_every_minute\n")
 
 
 if __name__ == '__main__':
