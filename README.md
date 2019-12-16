@@ -8,7 +8,7 @@
 
 - You can run the application by typing this in the terminal:
 
- `./application.py 2:30 < config`
+ `./application.py 02:30 < config`
  
  ## Testing
  Give correct permissions to test file:
