@@ -1,4 +1,4 @@
-#!venv/bin/python3.7
+#!/usr/bin/python
 
 import unittest
 import functions

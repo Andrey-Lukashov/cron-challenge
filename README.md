@@ -1,8 +1,9 @@
 # Cron Challenge
 ## Running the app
-- Make sure Python 3.7 is install and working correctly on your machine
+- Make sure Python 3.7 is installed and working on your machine
+- Make sure the shebang in application.py and tests.py points to python binary on your machine (by default shebang set to /usr/bin/python)
 - Open the terminal
-- Go to the root directory of this project
+- Go to the root directory of the project
 - Make sure the file is executable by running the following command:
 
 `chmod +x application.py`
