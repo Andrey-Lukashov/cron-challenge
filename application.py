@@ -22,7 +22,12 @@ if __name__ == "__main__":
         print("No config has been provided")
         sys.exit()
     else:
-        for line in sys.stdin:
+        config = sys.stdin.readlines()
+
+        if len(config) < 1 :
+            functions.log("main.log", "Config file supplied is empty", True)
+
+        for line in config:
             if functions.check_config_format(line):
                 line = line.split(" ")
                 minutes = line[0]

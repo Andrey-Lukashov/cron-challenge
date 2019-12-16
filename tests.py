@@ -90,6 +90,10 @@ class ApplicationTest(unittest.TestCase):
         result = subprocess.run(['./application.py', '21:26'], capture_output=True)
         self.assertEqual(result.stdout.decode("utf-8"), "No config has been provided\n")
 
+    def test_empty_config(self):
+        result = subprocess.run("./application.py 16:30 < empty", shell=True, capture_output=True)
+        self.assertEqual(result.stdout.decode("utf-8"), datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + "Config file supplied is empty\n")
+
     def test_correct_call(self):
         result = subprocess.run('./application.py 16:30 < test', shell=True, capture_output=True)
         self.assertEqual(result.stdout.decode("utf-8"), "16:30 today - /bin/run_me_every_minute\n")
