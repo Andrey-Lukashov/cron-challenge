@@ -88,7 +88,7 @@ class ApplicationTest(unittest.TestCase):
 
     def test_missing_config(self):
         result = subprocess.run(['./application.py', '21:26'], capture_output=True)
-        self.assertEqual(result.stdout.decode("utf-8"), "No config has been provided\n")
+        self.assertEqual(result.stdout.decode("utf-8"), datetime.now().strftime("%d/%m/%Y %H:%M:%S") + " - " + "No config has been provided\n")
 
     def test_empty_config(self):
         result = subprocess.run("./application.py 16:30 < empty", shell=True, capture_output=True)

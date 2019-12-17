@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     # Check if config is provided and then validate line by line
     if os.isatty(0):
-        print("No config has been provided")
+        functions.log("main.log","No config has been provided", True)
         sys.exit()
     else:
         config = sys.stdin.readlines()
